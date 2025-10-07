@@ -9,7 +9,7 @@
 решение прикладных бизнес-задач в области анализа больших данных, технологий
 и рыночных тенденций.
 
-**Ссылка на Git-репозиторий:** *https://github.com/GuzelN-4labs/XPath-Parsing.git*
+**Ссылка на Git-репозиторий:** *[https://github.com/GuzelN-4labs/XPath-Parsing.git](https://github.com/GuzelN-4labs/PW_1_API_Analysis.git)*
 
 **Задание №16.**
 
