@@ -66,6 +66,7 @@
 
 
 ><br>*официальная документация по парсингу kaggle:* *https://github.com/Kaggle/kaggle-api/blob/main/documentation/datasets.md*
+> или *https://technowhisp.com/kaggle-api-python-documentation/*
 
 В результате парсинга 10 странци было найдено 411 csv-файлов и 19 json-файлов
  ![image](pict_1.png)
