@@ -26,7 +26,7 @@
 
    <img width="529" height="132" alt="image" src="https://github.com/user-attachments/assets/c1d5dbbd-8131-4053-bd92-6758d986c9a0" />
 
-     
+   
 
 <br>Далее был произведен парсинг сайта на 10 страницах и посчитано количество файлов формата .csv и .json:
 <br> 1) для этого произведен сбор датасетов на 10 страницах при помощи команды <br> `kaggle.api.dataset_list(search='streaming', page=page_number)`
@@ -109,4 +109,62 @@
 <br> Далее произведен подсчет использованных языков программирования
 <br>
 ![image](pict_3.png)
+
+**Вывод по Заданию 2:**
+<br>Используя GitHub API, определили:
+
+*   в репозиториях Google используется 43 языка
+*   Самый популярный из них - Python (26% от общего количества)
+*   В топ-5 самых популярных языков входят: 'Python', 'C++', 'Go', 'Rust', 'TypeScript'
+
+**Задание 3**
+<br>**Анализ профессиональных ролей: для 100 вакансий "BI Analyst" проанализировать, какие другие названия должностей встречаются в тексте вакансии.**
+
+3.1. Сбор данных и анализ
+
+    import time
+    from collections import Counter
+    
+    HH_API_URL = "https://api.hh.ru/vacancies"
+    all_vacancies = []
+    pages_to_load = 5 # 100 вакансий (по 20 на странице)
+    
+    params = {
+        'text': 'BI Analyst',
+        'area': 1, # Москва
+        'per_page': 20
+    }
+    
+    for page in range(pages_to_load):
+        params['page'] = page
+        response = requests.get(HH_API_URL, params=params)
+        if response.status_code == 200:
+            vacancies_data = response.json()
+            all_vacancies.extend(vacancies_data['items'])
+            print(f"Загружена страница {page + 1}/{pages_to_load}")
+        else:
+            print(f"Ошибка при загрузке страницы {page + 1}: {response.status_code}")
+            break
+        time.sleep(0.2) # Соблюдаем вежливость к API
+    
+    print(f"\nВсего найдено вакансий: {len(all_vacancies)}")
+
+<br> 3.2. Вывод наименований должностей, которые также содержатся в вакансии BI Analyst
+
+<img width="470" height="199" alt="image" src="https://github.com/user-attachments/assets/a4b24c82-55a0-42d0-a40c-d724409cdeb2" />
+
+<br> Гипотеза почему они также встречаются при поиске BI Analyst: общие soft skills
+<br> Проверка гипотезы
+
+<img width="382" height="259" alt="image" src="https://github.com/user-attachments/assets/3e2781d9-8056-4867-918e-0370c009772a" />
+
+**Вывод по Заданию 2:**
+- в тексте вакансий встречается много других должностей, содержащих слова "аналитик" и/или "BI", также такие должности как: "Директор по продажам/Коммерческий директор (FMCG)", "Директор по маркетингу / CMO", "Менеджер по работе с маркетплейсом OZON", "Финансовый руководитель".
+- Эти должности с вакансией "BI-аналитик" объединяют ключевые навыки, в топе которых:
+ 1. sql
+ 2. power bi
+ 3. аналитическое мышление
+ 4. python
+ 5. анализ данных
+
 
